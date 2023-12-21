@@ -1,7 +1,7 @@
 const tools = [
     {
         name: 'JSON Formatter',
-        link: 'jsonformatter.html',
+        link: 'apps/json-formatter/index.html',
         description: 'Format and beautify your JSON data for easy reading.'
     },
     {
