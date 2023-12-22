@@ -8,10 +8,7 @@
 </head>
 <body>
     <h1>JSON Path Generator</h1>
-    <div id="loader" class="loader-container">
-        <div class="loader"></div>
-        <p id="loaderText">Evaluating JSON...</p>
-    </div>
+  
     <div id="customAlert" class="custom-alert">
         <div class="custom-alert-content">
             <span id="customAlertClose" class="custom-alert-close">&times;</span>
@@ -23,6 +20,14 @@
     <p class="note">Enter your JSON string in the textarea below and click 'Generate JSON Paths' to view the paths.</p>
     <textarea id="jsonInput" rows="10" cols="50"></textarea>
     <button id="generateJSONPaths">Generate JSON Paths</button>
+    <div id="loader" class="loader-container">
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <p id="loaderText">Evaluating JSON...</p>
+    </div>
     <table id="resultTable">
         <tr>
             <th>JSON Path</th>
