@@ -18,8 +18,29 @@
     
     <p class="description">This tool generates JSON paths for each element in a JSON string.</p>
     <p class="note">Enter your JSON string in the textarea below and click 'Generate JSON Paths' to view the paths.</p>
-    <textarea id="jsonInput" rows="10" cols="50"></textarea>
+    <textarea id="jsonInput" rows="10" cols="50" placeholder='{
+        "firstName": "John",
+        "lastName": "doe",
+        "age": 26,
+        "address": {
+            "streetAddress": "naist street",
+            "city": "Nara",
+            "postalCode": "630-0192"
+        },
+        "phoneNumbers": [
+            {
+                "type": "iPhone",
+                "number": "0123-4567-8888"
+            },
+            {
+                "type": "home",
+                "number": "0123-4567-8910"
+            }
+        ]
+    }'></textarea>
     <button id="generateJSONPaths">Generate JSON Paths</button>
+    <button id="clearTextArea">Clear Text Area</button>
+
     <div id="loader" class="loader-container">
         <div class="loader">
             <div class="dot"></div>

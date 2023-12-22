@@ -103,5 +103,6 @@ document.getElementById("generateJSONPaths").addEventListener("click", function(
 });
 
 
-
-
+document.getElementById("clearTextArea").addEventListener("click", function() {
+    document.querySelector("#jsonInput").value = '';
+});
