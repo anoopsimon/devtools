@@ -26,6 +26,7 @@ function addToTable(path, type, value) {
  cell1.innerHTML = `<span class='copyable' onclick='copyToClipboard("${path}")' title='Click to copy'>${path}</span>`;
  cell2.innerHTML = type;
  cell3.innerHTML = (typeof value === 'string' || typeof value === 'number') ? value : JSON.stringify(value);
+ 
 }
 
 function clearTable() {
@@ -100,4 +101,7 @@ document.getElementById("generateJSONPaths").addEventListener("click", function(
         loader.style.display = "none";
     }
 });
+
+
+
 
