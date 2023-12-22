@@ -32,6 +32,10 @@ function addToTable(path, type, value) {
     cell1.innerHTML = path;
     cell2.innerHTML = type;
     cell3.innerHTML = (typeof value === 'string' || typeof value === 'number') ? value : JSON.stringify(value);
+ // Make path copyable
+ cell1.innerHTML = `<span class='copyable' onclick='copyToClipboard("${path}")' title='Click to copy'>${path}</span>`;
+ cell2.innerHTML = type;
+ cell3.innerHTML = (typeof value === 'string' || typeof value === 'number') ? value : JSON.stringify(value);
 }
 
 function clearTable() {
@@ -41,3 +45,21 @@ function clearTable() {
         table.deleteRow(i);
     }
 }
+
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        showToast();
+    }).catch(function(err) {
+        console.error('Could not copy text: ', err);
+    });
+}
+
+function showToast() {
+    var toast = document.getElementById("toast");
+    toast.classList.add("show");
+    setTimeout(function() { 
+        toast.classList.remove("show"); 
+    }, 5000); // Duration set to 5000 milliseconds (5
+}
+

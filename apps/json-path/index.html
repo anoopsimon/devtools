@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JSON Path Generator</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Path Generator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="toast" class="toast">Copied to Clipboard!</div>
+
     <textarea id="jsonInput" rows="10" cols="50"></textarea>
     <button id="generateJSONPaths">Generate JSON Paths</button>
     <table id="resultTable">
         <tr>
             <th>JSON Path</th>
-            <th>Node Details</th>
+            <th>Type</th>
+            <th>Value</th>
         </tr>
     </table>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-    

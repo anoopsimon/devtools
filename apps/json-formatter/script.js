@@ -36,7 +36,12 @@ document.getElementById('formatBtn').addEventListener('click', function() {
 });
 
 
-// ... rest of the JavaScript code remains the same
+function showToast() {
+    var toast = document.getElementById("toast");
+    toast.className = "show";
+    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+}
+
 
 
 document.getElementById('copyBtn').addEventListener('click', function() {

@@ -74,6 +74,19 @@ button:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.toast {
+    visibility: hidden; /* Initially hidden */
+    /* ... other styles ... */
+}
+
+.toast.show {
+    visibility: visible; /* Make visible when class 'show' is added */
+    /* ... animations ... */
+}
+
+
+
+
 .json-key {
     color: brown;
 }
