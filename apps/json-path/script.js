@@ -1,14 +1,4 @@
-document.getElementById("generateJSONPaths").addEventListener("click", function() {
-    var jsonInput = document.getElementById("jsonInput").value;
-    try {
-        var jsonData = JSON.parse(jsonInput);
-        clearTable(); // Clear previous results
-        generatePaths(jsonData, '$');
-        document.getElementById("resultTable").style.display = "table"; // Show table
-    } catch (e) {
-        alert("Invalid JSON");
-    }
-});
+
 
 function generatePaths(obj, currentPath) {
     if (typeof obj === 'object' && obj !== null) {
@@ -62,4 +52,29 @@ function showToast() {
         toast.classList.remove("show"); 
     }, 5000); // Duration set to 5000 milliseconds (5
 }
+
+
+
+document.getElementById("generateJSONPaths").addEventListener("click", function() {
+    var jsonInput = document.getElementById("jsonInput").value;
+    try {
+        var jsonData = JSON.parse(jsonInput);
+        clearTable();
+        generatePaths(jsonData, '$');
+        document.getElementById("resultTable").style.display = "table";
+    } catch (e) {
+        document.getElementById("customAlert").style.display = "block";
+    }
+});
+
+document.getElementById("customAlertClose").onclick = function() {
+    document.getElementById("customAlert").style.display = "none";
+};
+
+window.onclick = function(event) {
+    var alert = document.getElementById("customAlert");
+    if (event.target == alert) {
+        alert.style.display = "none";
+    }
+};
 

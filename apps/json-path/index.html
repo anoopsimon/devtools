@@ -7,8 +7,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="toast" class="toast">Copied to Clipboard!</div>
-
+    <h1>JSON Path Generator</h1>
+    <div id="customAlert" class="custom-alert">
+        <div class="custom-alert-content">
+            <span id="customAlertClose" class="custom-alert-close">&times;</span>
+            <p>Invalid JSON. Please check your input.</p>
+        </div>
+    </div>
+    
+    <p class="description">This tool generates JSON paths for each element in a JSON string.</p>
+    <p class="note">Enter your JSON string in the textarea below and click 'Generate JSON Paths' to view the paths.</p>
     <textarea id="jsonInput" rows="10" cols="50"></textarea>
     <button id="generateJSONPaths">Generate JSON Paths</button>
     <table id="resultTable">
@@ -18,6 +26,7 @@
             <th>Value</th>
         </tr>
     </table>
+    <div id="toast" class="toast">Copied to Clipboard!</div>
     <script src="script.js"></script>
 </body>
 </html>
