@@ -10,7 +10,7 @@ body {
 }
 
 #jsonInput {
-    width: 80%; /* Adjust width as needed */
+    width: 60%; /* Adjust width as needed */
     max-height: 300px; /* Set a maximum height */
     overflow-y: auto; /* Enable vertical scrolling */
     border: 2px solid #ddd;
@@ -40,7 +40,8 @@ body {
 }
 
 table {
-    width: 100%;
+    width: 80%;
+    table-layout: fixed;
     border-collapse: collapse;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -49,6 +50,10 @@ th, td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
+    word-wrap: break-word; /* Breaks long words to prevent overflow */
+    max-width: 200px; /* Adjust as needed */
+    overflow: hidden; /* Optional: use if you prefer text truncation */
+    text-overflow: ellipsis; /* Optional: adds '...' at the end of truncated text */
 }
 
 th {
