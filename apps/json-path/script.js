@@ -55,18 +55,6 @@ function showToast() {
 
 
 
-document.getElementById("generateJSONPaths").addEventListener("click", function() {
-    var jsonInput = document.getElementById("jsonInput").value;
-    try {
-        var jsonData = JSON.parse(jsonInput);
-        clearTable();
-        generatePaths(jsonData, '$');
-        document.getElementById("resultTable").style.display = "table";
-    } catch (e) {
-        document.getElementById("customAlert").style.display = "block";
-    }
-});
-
 document.getElementById("customAlertClose").onclick = function() {
     document.getElementById("customAlert").style.display = "none";
 };
@@ -77,4 +65,39 @@ window.onclick = function(event) {
         alert.style.display = "none";
     }
 };
+
+
+
+document.getElementById("generateJSONPaths").addEventListener("click", function() {
+    var jsonInput = document.getElementById("jsonInput").value;
+    var loader = document.getElementById("loader");
+    var loaderText = document.getElementById("loaderText");
+    
+    try {
+        JSON.parse(jsonInput); // Validate JSON
+        loader.style.display = "flex";
+        loaderText.textContent = "Evaluating JSON...";
+
+        setTimeout(function() {
+            loaderText.textContent = "Generating JSON Paths...";
+
+            setTimeout(function() {
+                clearTable();
+                generatePaths(JSON.parse(jsonInput), '$');
+                document.getElementById("resultTable").style.display = "table";
+                loaderText.textContent = "Generated!";
+                
+                setTimeout(function() {
+                    loader.style.display = "none";
+                }, 300); // Wait a moment before hiding loader
+
+            }, 200); // Fake delay for generating paths
+
+        }, 200); // Fake delay for evaluating JSON
+
+    } catch (e) {
+        document.getElementById("customAlert").style.display = "block";
+        loader.style.display = "none";
+    }
+});
 
