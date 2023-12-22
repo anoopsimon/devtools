@@ -6,7 +6,7 @@ const tools = [
     },
     {
         name: 'JSON Path Generator',
-        link: 'apps/json-path/index.html',
+        link: 'apps/json-path-generator/index.html',
         description: 'Generate JSON path of all elements in JSON'
     },
     {
