@@ -22,20 +22,43 @@ function compareJson() {
     }
 }
 
+function highlightDifferences(obj1, obj2, mismatches) {
+    var jsonDisplay1 = document.getElementById("jsonDisplay1");
+    var jsonDisplay2 = document.getElementById("jsonDisplay2");
+
+    jsonDisplay1.innerHTML = syntaxHighlight(JSON.stringify(obj1, null, 2));
+    jsonDisplay2.innerHTML = syntaxHighlight(JSON.stringify(obj2, null, 2));
+}
+
+function syntaxHighlight(json) {
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/"__mismatch":\s*"([^"]+)"/g, function(match, p1) {
+        return `<span class="mismatch">"${p1}"</span>`;
+    });
+}
+
 function compareObjects(obj1, obj2, mismatches, path) {
     for (var key in obj1) {
-        if (typeof obj1[key] === 'object' && obj1[key] !== null && obj2[key] !== null) {
-            compareObjects(obj1[key], obj2[key], mismatches, path + key + ".");
-        } else if (!obj2.hasOwnProperty(key)) {
+        if (!obj2.hasOwnProperty(key)) {
             mismatches[path + key] = "Missing in JSON 2";
+            obj1[key] = { __mismatch: obj1[key] };
+        } else if (typeof obj1[key] === 'object' && obj1[key] !== null) {
+            if (typeof obj2[key] === 'object' && obj2[key] !== null) {
+                compareObjects(obj1[key], obj2[key], mismatches, path + key + ".");
+            } else {
+                mismatches[path + key] = "Different types";
+                obj1[key] = { __mismatch: obj1[key] };
+            }
         } else if (JSON.stringify(obj1[key]) !== JSON.stringify(obj2[key])) {
             mismatches[path + key] = "Different values";
+            obj1[key] = { __mismatch: obj1[key] };
         }
     }
 
     for (var key in obj2) {
         if (!obj1.hasOwnProperty(key)) {
             mismatches[path + key] = "Missing in JSON 1";
+            obj2[key] = { __mismatch: obj2[key] };
         }
     }
 }
@@ -57,15 +80,48 @@ function highlightDifferences(obj1, obj2, mismatches) {
     jsonDisplay1.innerHTML = syntaxHighlight(JSON.stringify(obj1, null, 2), mismatches, '1');
     jsonDisplay2.innerHTML = syntaxHighlight(JSON.stringify(obj2, null, 2), mismatches, '2');
 }
-
-function syntaxHighlight(json, mismatches, jsonNumber) {
+function syntaxHighlight(json) {
     json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return json.replace(/("[\w]+":\s*"[^"]*"|"[^"]*")|(\d+|\d+\.\d+)/g, function(match) {
-        var path = getPathFromMatch(match);
-        var style = mismatches.hasOwnProperty(path + jsonNumber) ? ' class="mismatch"' : '';
-        return '<span' + style + '>' + match + '</span>';
+    return json.replace(/"__mismatch":\s*({\s*")([^"]+)("}|")/g, function(match, p1, p2, p3) {
+        return `"__mismatch": ${p1}<span class="mismatch">${p2}</span>${p3}`;
     });
 }
+
+
+function getPath(key, jsonNumber, offset, json) {
+    var path = '';
+    var inString = false;
+    var stack = [];
+
+    for (var i = offset - 1; i >= 0; i--) {
+        if (json[i] === '"') inString = !inString;
+
+        if (!inString) {
+            if (json[i] === '{') {
+                if (stack.length === 0) break;
+                stack.pop();
+            } else if (json[i] === '}') {
+                stack.push('}');
+            }
+        }
+    }
+
+    if (i > 0) {
+        var partialJson = json.substring(0, i);
+        var regex = /"(\w+)":\s*{/g;
+        var match;
+        while ((match = regex.exec(partialJson)) !== null) {
+            stack.push(match[1]);
+        }
+    }
+
+    while (stack.length) {
+        path = stack.pop() + (path ? '.' + path : '');
+    }
+
+    return path ? path + '.' + key : key;
+}
+
 
 function getPathFromMatch(match) {
     var result = match.match(/"([\w]+)":/);

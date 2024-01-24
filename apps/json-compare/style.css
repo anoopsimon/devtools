@@ -98,6 +98,17 @@ tr:nth-child(even) {
 }
 
 .mismatch {
-    color: red;
+    color: red; /* or any other color you prefer */
     font-weight: bold;
+}
+
+
+
+pre {
+    margin: 0;
+    font-family: monospace;
+}
+
+span.mismatch {
+    background-color: #ffdddd; /* Light red background */
 }
