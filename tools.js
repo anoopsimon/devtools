@@ -10,6 +10,11 @@ const tools = [
         description: 'Generate JSON path of all elements in JSON'
     },
     {
+        name: 'JSON Compare',
+        link: 'apps/json-compare/index.html',
+        description: 'Compare two JSON strings and print results'
+    },
+    {
         name: 'XML Tool',
         link: 'xmltool.html',
         description: 'Handle and manipulate XML data with ease.'
