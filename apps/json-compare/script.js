@@ -40,7 +40,7 @@ function syntaxHighlight(json) {
 function compareObjects(obj1, obj2, mismatches, path) {
     for (var key in obj1) {
         if (!obj2.hasOwnProperty(key)) {
-            mismatches[path + key] = "Missing in JSON 2";
+            mismatches[path + key] = "Attribute missing in JSON 2";
             obj1[key] = { __mismatch: obj1[key] };
         } else if (typeof obj1[key] === 'object' && obj1[key] !== null) {
             if (typeof obj2[key] === 'object' && obj2[key] !== null) {
@@ -57,7 +57,7 @@ function compareObjects(obj1, obj2, mismatches, path) {
 
     for (var key in obj2) {
         if (!obj1.hasOwnProperty(key)) {
-            mismatches[path + key] = "Missing in JSON 1";
+            mismatches[path + key] = "Attribute missing in JSON 1";
             obj2[key] = { __mismatch: obj2[key] };
         }
     }
