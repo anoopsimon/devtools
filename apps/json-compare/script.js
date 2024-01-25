@@ -65,9 +65,9 @@ function compareObjects(obj1, obj2, mismatches, path) {
 
 function displayTable(title, data) {
     var results = document.getElementById("results");
-    var tableHtml = "<h4>" + title + ":</h4><table><tr><th>Attribute</th><th>Description</th></tr>";
+    var tableHtml = "<h4>" + title + ":</h4><table><tr><th>Attribute</th><th>Comments</th></tr>";
     for (var key in data) {
-        tableHtml += "<tr><td>" + key + "</td><td>" + data[key] + "</td></tr>";
+        tableHtml += "<tr><td>" + key + "</td><td style=\" color:red\">" + data[key] + "</td></tr>";
     }
     tableHtml += "</table>";
     results.innerHTML += tableHtml;

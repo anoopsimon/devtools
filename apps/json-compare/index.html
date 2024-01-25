@@ -4,20 +4,26 @@
     <title>JSON Comparator</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<div class="container">
-    <h2>JSON Comparator</h2>
-    <div class="textarea-container">
-        <textarea id="json1" placeholder="Paste JSON 1 here"></textarea>
-        <textarea id="json2" placeholder="Paste JSON 2 here"></textarea>
+<body>
+    <div class="container">
+        <h2>JSON Comparator</h2>
+        <div class="textarea-container">
+            <div>
+                <label for="json1">JSON 1</label>
+                <textarea id="json1" placeholder="Paste JSON 1 here"></textarea>
+            </div>
+            <div>
+                <label for="json2">JSON 2</label>
+                <textarea id="json2" placeholder="Paste JSON 2 here"></textarea>
+            </div>
+        </div>
+        <button onclick="compareJson()">Compare</button>
+        <div id="results"></div>
+        <div class="json-container">
+            <div class="json-box" id="jsonDisplay1"></div>
+            <div class="json-box" id="jsonDisplay2"></div>
+        </div>
     </div>
-    <button onclick="compareJson()">Compare</button>
-    <div id="results"></div>
-    <div class="json-container">
-        <div class="json-box" id="jsonDisplay1"></div>
-        <div class="json-box" id="jsonDisplay2"></div>
-    </div>
-</div>
     <script src="script.js"> </script>
-
 </body>
 </html>

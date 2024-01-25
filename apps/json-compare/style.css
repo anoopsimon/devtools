@@ -1,15 +1,7 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    color: #333;
-}
-
 .container {
     margin: 0 auto;
-    max-width: 800px; /* Adjust as needed */
-    padding: 0 20px; /* Adds padding inside the container */
+    max-width: 800px;
+    padding: 0 20px;
 }
 
 h2 {
@@ -23,18 +15,28 @@ h2 {
     margin-bottom: 20px;
 }
 
+.textarea-container > div {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.textarea-container > div:last-child {
+    margin-right: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
 textarea {
-    flex: 1; /* Equal width */
+    width: 100%;
     height: 150px;
     padding: 10px;
-    margin-right: 10px; /* Space between textareas */
     border: 1px solid #ddd;
     border-radius: 4px;
     font-family: monospace;
-}
-
-textarea:last-child {
-    margin-right: 0;
 }
 
 button {
@@ -46,7 +48,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    margin: 0 auto; /* Center align */
+    margin: 0 auto 20px;
 }
 
 button:hover {
@@ -54,35 +56,12 @@ button:hover {
 }
 
 #results {
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
     margin-bottom: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #f0f0f0;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
 }
 
 .json-container {
     display: flex;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .json-box {
@@ -98,17 +77,42 @@ tr:nth-child(even) {
 }
 
 .mismatch {
-    color: red; /* or any other color you prefer */
+    color: red;
     font-weight: bold;
 }
 
-
-
-pre {
-    margin: 0;
-    font-family: monospace;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff; /* White background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
 }
 
-span.mismatch {
-    background-color: #ffdddd; /* Light red background */
+th, td {
+    padding: 10px 15px; /* Adjust padding for space */
+    border-bottom: 1px solid #ddd; /* Horizontal borders for each row */
+}
+
+th {
+    background-color: #f9f9f9; /* Light gray background for headers */
+    color: #333; /* Dark text for contrast */
+    font-weight: bold;
+}
+
+tr:last-child td {
+    border-bottom: none; /* Remove border for the last row */
+}
+
+td:first-child {
+    font-weight: bold; /* Make the attribute names bold */
+    color: #0d6efd; /* Use a distinct color */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Hover effect for rows */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Hover effect for rows */
 }
