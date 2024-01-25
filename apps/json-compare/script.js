@@ -1,25 +1,38 @@
+
+
 function compareJson() {
-    var json1 = document.getElementById("json1").value;
-    var json2 = document.getElementById("json2").value;
-    var results = document.getElementById("results");
-    var mismatches = {};
+    var loader = document.getElementById("loader");
+    loader.style.display = "block"; // Show loader
 
-    try {
-        var obj1 = JSON.parse(json1);
-        var obj2 = JSON.parse(json2);
+    // Add a timeout to simulate the loading time
+    setTimeout(function () {
 
-        compareObjects(obj1, obj2, mismatches, "");
 
-        results.innerHTML = "<h3>Results:</h3>";
-        if (Object.keys(mismatches).length === 0) {
-            results.innerHTML += "<p>JSON files are matching.</p>";
-        } else {
-            displayTable("Mismatches", mismatches);
-            highlightDifferences(obj1, obj2, mismatches);
+        var json1 = document.getElementById("json1").value;
+        var json2 = document.getElementById("json2").value;
+        var results = document.getElementById("results");
+        var mismatches = {};
+
+        try {
+            var obj1 = JSON.parse(json1);
+            var obj2 = JSON.parse(json2);
+
+            compareObjects(obj1, obj2, mismatches, "");
+
+            results.innerHTML = "<h3>Results:</h3>";
+            if (Object.keys(mismatches).length === 0) {
+                results.innerHTML += "<p>JSON files are matching.</p>";
+            } else {
+                displayTable("Mismatches", mismatches);
+                highlightDifferences(obj1, obj2, mismatches);
+            }
+        } catch (e) {
+            results.innerHTML = "<p>Error parsing JSON. Please check your input.</p>";
         }
-    } catch (e) {
-        results.innerHTML = "<p>Error parsing JSON. Please check your input.</p>";
-    }
+
+        // Hide loader after comparison is done
+        loader.style.display = "none";
+    }, 500);
 }
 
 function highlightDifferences(obj1, obj2, mismatches) {
@@ -32,7 +45,7 @@ function highlightDifferences(obj1, obj2, mismatches) {
 
 function syntaxHighlight(json) {
     json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return json.replace(/"__mismatch":\s*"([^"]+)"/g, function(match, p1) {
+    return json.replace(/"__mismatch":\s*"([^"]+)"/g, function (match, p1) {
         return `<span class="mismatch">"${p1}"</span>`;
     });
 }
@@ -82,7 +95,7 @@ function highlightDifferences(obj1, obj2, mismatches) {
 }
 function syntaxHighlight(json) {
     json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return json.replace(/"__mismatch":\s*({\s*")([^"]+)("}|")/g, function(match, p1, p2, p3) {
+    return json.replace(/"__mismatch":\s*({\s*")([^"]+)("}|")/g, function (match, p1, p2, p3) {
         return `"__mismatch": ${p1}<span class="mismatch">${p2}</span>${p3}`;
     });
 }
